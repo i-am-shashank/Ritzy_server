@@ -17,7 +17,8 @@ mongoose
 	})
 	.then(() => console.log("DB Connected"));
 //middlewares
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use(cors());
 //routes middleware
 app.get("/", (req, res) => {
@@ -28,5 +29,5 @@ app.use("/products", productRoutes);
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-	console.log(`Server is running on ${port}`);
+	console.log(`Server is running on: http://localhost:${port}`);
 });

@@ -48,3 +48,10 @@ exports.search = (req, res) => {
     }
   );
 };
+exports.addBulkProducts = (req, res) => {
+  Product.insertMany(req.body, function (err, result) {
+    if (err) return res.send(err);
+    res.send({ status: "uploaded!" });
+  });
+};
+
